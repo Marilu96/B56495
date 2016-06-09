@@ -5,6 +5,8 @@
  */
 package vista;
 
+import modelo.Hilo;
+
 /**
  *
  * @author Usuario
@@ -14,10 +16,50 @@ public class FRM_Juego extends javax.swing.JFrame {
     /**
      * Creates new form FRM_Juego
      */
+    Hilo hilo;
+     public String estado = "En el suelo";
+     int contador =0;
     public FRM_Juego() {
         initComponents();
+        setLocation(450,600);
+        jl_Obst1.setLocation(500,370);
+        hilo = new Hilo(this);
+        hilo.start();
     }
-
+    
+    public void moverFondo()
+    {
+        if(jl_FondoSprinfield.getX()>-350)
+            jl_FondoSprinfield.setLocation(jl_FondoSprinfield.getX()-5, jl_FondoSprinfield.getY());
+        
+        else
+            jl_FondoSprinfield.setLocation(0,jl_FondoSprinfield.getY());
+    }
+//    public void moverObstaculo()
+//      {
+//          if(jl_Obst1.getX()>-50)
+//              jl_Obst1.setLocation(jl_Obst1.getX()-15, jl_Obst1.getY());
+//
+//          else
+//              jl_Obst1.setLocation(600,jl_Obst1.getY());
+//      }
+     public void subiendoPersonaje()
+    {
+        this.personaje.setLocation(personaje.getX(), personaje.getY()-25);
+    }
+     public void bajandoPersonaje()
+    {
+        this.personaje.setLocation(personaje.getX(), personaje.getY()+25);
+    }
+     
+     public void comprobarColision()
+     {
+         if(personaje.getX()+50>jl_Obst1.getX()&&jl_Obst1.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst1.getY())
+         {
+             System.out.println("Colisión!!!");
+         }
+     }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,25 +69,57 @@ public class FRM_Juego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fondo = new javax.swing.JLabel();
+        personaje = new javax.swing.JLabel();
+        jl_Obst1 = new javax.swing.JLabel();
+        jl_Obst2 = new javax.swing.JLabel();
+        jl_Obst3 = new javax.swing.JLabel();
+        jl_Obst4 = new javax.swing.JLabel();
+        jl_Obst5 = new javax.swing.JLabel();
+        jl_FondoSprinfield = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 500));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+        getContentPane().setLayout(null);
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"))); // NOI18N
+        personaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/homero.gif"))); // NOI18N
+        getContentPane().add(personaje);
+        personaje.setBounds(0, 190, 139, 160);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jl_Obst1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/12.png"))); // NOI18N
+        getContentPane().add(jl_Obst1);
+        jl_Obst1.setBounds(320, 230, 250, 130);
+
+        jl_Obst2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/11.png"))); // NOI18N
+        getContentPane().add(jl_Obst2);
+        jl_Obst2.setBounds(710, 380, 250, 90);
+
+        jl_Obst3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/111.png"))); // NOI18N
+        getContentPane().add(jl_Obst3);
+        jl_Obst3.setBounds(1070, 260, 250, 100);
+
+        jl_Obst4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bus.png"))); // NOI18N
+        getContentPane().add(jl_Obst4);
+        jl_Obst4.setBounds(1430, 390, 270, 110);
+
+        jl_Obst5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/obst2.png"))); // NOI18N
+        getContentPane().add(jl_Obst5);
+        jl_Obst5.setBounds(1780, 300, 80, 60);
+
+        jl_FondoSprinfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sp2.jpg"))); // NOI18N
+        getContentPane().add(jl_FondoSprinfield);
+        jl_FondoSprinfield.setBounds(0, -20, 3000, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        System.out.println(""+evt.getKeyCode());        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -83,6 +157,12 @@ public class FRM_Juego extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Fondo;
+    private javax.swing.JLabel jl_FondoSprinfield;
+    private javax.swing.JLabel jl_Obst1;
+    private javax.swing.JLabel jl_Obst2;
+    private javax.swing.JLabel jl_Obst3;
+    private javax.swing.JLabel jl_Obst4;
+    private javax.swing.JLabel jl_Obst5;
+    private javax.swing.JLabel personaje;
     // End of variables declaration//GEN-END:variables
 }
