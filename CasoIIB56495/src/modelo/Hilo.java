@@ -27,10 +27,16 @@ public class Hilo extends Thread {
             {
                 sleep(100);
                 ventana.moverFondo();
-           //     ventana.moverObstaculo();
-          //      ventana.comprobarColision();
+               ventana.moverObstaculo1();
+               ventana.moverObstaculo2();
+               ventana.moverObstaculo3();
+               ventana.moverObstaculo4();
+               ventana.comprobarColision1();
+               ventana.comprobarColision2();
+               ventana.comprobarColision3();
+               ventana.comprobarColision4();
 //                ventana.cambiarIcono();
-              //  comprobarPersonaje();
+                comprobarPersonaje();
             }
             catch(Exception e)
             {
@@ -39,25 +45,25 @@ public class Hilo extends Thread {
         }
     }
     
-//    public void comprobarPersonaje()
-//    {
-//        if(ventana.estado.equals("Subiendo"))
-//        {
-//            ventana.subiendoPersonaje();
-//        }
-//        
-//        if(ventana.estado.equals("Bajando"))
-//        {
-//            ventana.bajandoPersonaje();
-//        }
-//        if(ventana.jl_Personaje.getY()<170)
-//        {
-//            ventana.estado="Bajando";
-//        }
-//        if(ventana.jl_Personaje.getY()==270)
-//        {
-//            ventana.estado="En el suelo";
-//        }
-//    }
+    public void comprobarPersonaje()
+    {
+        if(ventana.estado.equals("Subiendo"))
+        {
+            ventana.subiendoPersonaje();
+        }
+        
+        if(ventana.estado.equals("Bajando"))
+        {
+            ventana.bajandoPersonaje();
+        }
+        if(ventana.personaje.getY()<160)
+        {
+            ventana.estado="Bajando";
+        }
+        if(ventana.personaje.getY()==270)
+        {
+            ventana.estado="En el suelo";
+        }
+    }
     
 }

@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.applet.AudioClip;
 import modelo.Hilo;
 
 /**
@@ -19,14 +20,22 @@ public class FRM_Juego extends javax.swing.JFrame {
     Hilo hilo;
      public String estado = "En el suelo";
      int contador =0;
+     //AudioClip doh;
+     
     public FRM_Juego() {
         initComponents();
-        setLocation(450,600);
-        jl_Obst1.setLocation(500,370);
+        setLocation(450,100);
+        jl_Obst1.setLocation(300,170);
+        jl_Obst2.setLocation(900,350);
+        jl_Obst3.setLocation(1800, 170);
+        jl_Obst4.setLocation(2600, 350);
         hilo = new Hilo(this);
         hilo.start();
+//        doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
+//        doh.play();
     }
     
+        
     public void moverFondo()
     {
         if(jl_FondoSprinfield.getX()>-350)
@@ -35,14 +44,8 @@ public class FRM_Juego extends javax.swing.JFrame {
         else
             jl_FondoSprinfield.setLocation(0,jl_FondoSprinfield.getY());
     }
-//    public void moverObstaculo()
-//      {
-//          if(jl_Obst1.getX()>-50)
-//              jl_Obst1.setLocation(jl_Obst1.getX()-15, jl_Obst1.getY());
-//
-//          else
-//              jl_Obst1.setLocation(600,jl_Obst1.getY());
-//      }
+   
+    
      public void subiendoPersonaje()
     {
         this.personaje.setLocation(personaje.getX(), personaje.getY()-25);
@@ -51,14 +54,77 @@ public class FRM_Juego extends javax.swing.JFrame {
     {
         this.personaje.setLocation(personaje.getX(), personaje.getY()+25);
     }
-     
-     public void comprobarColision()
+     ////////////Obstaculo 1/////////////////////
+      public void moverObstaculo1()
+      {
+          if(jl_Obst1.getX()>-50)
+              jl_Obst1.setLocation(jl_Obst1.getX()-15, jl_Obst1.getY());
+
+          else
+              jl_Obst1.setLocation(600,jl_Obst1.getY());
+      } 
+       public void comprobarColision1()
      {
          if(personaje.getX()+50>jl_Obst1.getX()&&jl_Obst1.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst1.getY())
          {
              System.out.println("Colisión!!!");
          }
      }
+      
+      /////////////Obstaculo 2///////////////////
+       public void moverObstaculo2()
+      {
+          if(jl_Obst2.getX()>-50)
+              jl_Obst2.setLocation(jl_Obst2.getX()-15, jl_Obst2.getY());
+
+          else
+              jl_Obst2.setLocation(600,jl_Obst2.getY());
+      } 
+     public void comprobarColision2()
+     {
+         if(personaje.getX()+50>jl_Obst2.getX()&&jl_Obst2.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst2.getY())
+         {
+             System.out.println("Colisión!!!");
+            //doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
+            //doh.play();
+         }
+     }
+      /////////////Obstaculo 3///////////////////
+       public void moverObstaculo3()
+      {
+          if(jl_Obst3.getX()>-50)
+              jl_Obst3.setLocation(jl_Obst3.getX()-15, jl_Obst3.getY());
+
+          else
+              jl_Obst3.setLocation(600,jl_Obst3.getY());
+      } 
+     public void comprobarColision3()
+     {
+         if(personaje.getX()+50>jl_Obst3.getX()&&jl_Obst3.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst3.getY())
+         {
+             System.out.println("Colisión!!!");
+            //doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
+            //doh.play();
+         }
+     } /////////////Obstaculo 4///////////////////
+       public void moverObstaculo4()
+      {
+          if(jl_Obst4.getX()>-50)
+              jl_Obst4.setLocation(jl_Obst4.getX()-15, jl_Obst4.getY());
+
+          else
+              jl_Obst4.setLocation(600,jl_Obst4.getY());
+      } 
+     public void comprobarColision4()
+     {
+         if(personaje.getX()+50>jl_Obst4.getX()&&jl_Obst4.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst4.getY())
+         {
+             System.out.println("Colisión!!!");
+            //doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
+            //doh.play();
+         }
+     }
+    
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,23 +154,23 @@ public class FRM_Juego extends javax.swing.JFrame {
 
         personaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/homero.gif"))); // NOI18N
         getContentPane().add(personaje);
-        personaje.setBounds(0, 190, 139, 160);
+        personaje.setBounds(0, 220, 140, 150);
 
         jl_Obst1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/12.png"))); // NOI18N
         getContentPane().add(jl_Obst1);
-        jl_Obst1.setBounds(320, 230, 250, 130);
+        jl_Obst1.setBounds(200, 210, 250, 90);
 
         jl_Obst2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/11.png"))); // NOI18N
         getContentPane().add(jl_Obst2);
-        jl_Obst2.setBounds(710, 380, 250, 90);
+        jl_Obst2.setBounds(710, 390, 250, 80);
 
         jl_Obst3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/111.png"))); // NOI18N
         getContentPane().add(jl_Obst3);
-        jl_Obst3.setBounds(1070, 260, 250, 100);
+        jl_Obst3.setBounds(1070, 240, 250, 100);
 
         jl_Obst4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bus.png"))); // NOI18N
         getContentPane().add(jl_Obst4);
-        jl_Obst4.setBounds(1430, 390, 270, 110);
+        jl_Obst4.setBounds(1430, 380, 250, 100);
 
         jl_Obst5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/obst2.png"))); // NOI18N
         getContentPane().add(jl_Obst5);
@@ -112,13 +178,22 @@ public class FRM_Juego extends javax.swing.JFrame {
 
         jl_FondoSprinfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sp2.jpg"))); // NOI18N
         getContentPane().add(jl_FondoSprinfield);
-        jl_FondoSprinfield.setBounds(0, -20, 3000, 560);
+        jl_FondoSprinfield.setBounds(0, -50, 3000, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        System.out.println(""+evt.getKeyCode());        // TODO add your handling code here:
+       if(evt.getKeyCode()==38)
+        {
+            estado = "Subiendo";
+        }
+       if(evt.getKeyCode()==40)
+        {
+            estado = "Bajando";
+        }
+        
+      //  System.out.println(""+evt.getKeyCode());        // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
 
     /**
@@ -163,6 +238,6 @@ public class FRM_Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jl_Obst3;
     private javax.swing.JLabel jl_Obst4;
     private javax.swing.JLabel jl_Obst5;
-    private javax.swing.JLabel personaje;
+    public javax.swing.JLabel personaje;
     // End of variables declaration//GEN-END:variables
 }
