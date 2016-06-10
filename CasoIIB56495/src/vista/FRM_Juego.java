@@ -17,22 +17,27 @@ public class FRM_Juego extends javax.swing.JFrame {
     /**
      * Creates new form FRM_Juego
      */
+    
     Hilo hilo;
-     public String estado = "En el suelo";
+     public String estado = "";
+     public String arriba = "arriba";
+     public String abajo = "abajo";
      int contador =0;
-     //AudioClip doh;
+     AudioClip doh;
+     
      
     public FRM_Juego() {
         initComponents();
         setLocation(450,100);
-        jl_Obst1.setLocation(300,170);
-        jl_Obst2.setLocation(900,350);
-        jl_Obst3.setLocation(1800, 170);
-        jl_Obst4.setLocation(2600, 350);
+        personaje.setLocation(100, 200);
+        jl_Obst1.setLocation(500,200);
+        jl_Obst2.setLocation(900,370);
+        jl_Obst3.setLocation(2000, 120);
+        jl_Obst4.setLocation(2800, 350);
         hilo = new Hilo(this);
-        hilo.start();
-//        doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
-//        doh.play();
+        doh= java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/Homer_-_D_OH_.wav"));
+        jProgressBar1.setValue(100);
+
     }
     
         
@@ -48,26 +53,61 @@ public class FRM_Juego extends javax.swing.JFrame {
     
      public void subiendoPersonaje()
     {
-        this.personaje.setLocation(personaje.getX(), personaje.getY()-25);
+        this.personaje.setLocation(personaje.getX(), personaje.getY()-100);
     }
      public void bajandoPersonaje()
     {
-        this.personaje.setLocation(personaje.getX(), personaje.getY()+25);
+        this.personaje.setLocation(personaje.getX(), personaje.getY()+100);
     }
+        
+     public void limite()
+     {
+         if(personaje.getY()<=80)
+         {
+             personaje.setLocation(personaje.getX(), 100);
+         }
+         if(personaje.getY()>=350)
+         {
+             personaje.setLocation(personaje.getX(), 350);
+
+         }
+         
+     }
+     
+   
      ////////////Obstaculo 1/////////////////////
+    
       public void moverObstaculo1()
       {
-          if(jl_Obst1.getX()>-50)
-              jl_Obst1.setLocation(jl_Obst1.getX()-15, jl_Obst1.getY());
-
+          
+          if(jl_Obst1.getX()+200<0)
+          {
+              jl_Obst1.setLocation(650, jl_Obst1.getY());
+              contador+=-2;
+          }
           else
-              jl_Obst1.setLocation(600,jl_Obst1.getY());
+          {
+              jl_Obst1.setLocation(jl_Obst1.getX()-15+contador, jl_Obst1.getY());
+              
+          }
+          System.out.println("estado "+estado);  
       } 
+      
+      
+    
        public void comprobarColision1()
      {
-         if(personaje.getX()+50>jl_Obst1.getX()&&jl_Obst1.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst1.getY())
+//         if(personaje.getX()+50>jl_Obst1.getX()&&jl_Obst1.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst1.getY())
+//         {
+//             System.out.println("Colisión!!!");
+//             doh.play();
+//
+//         }
+         
+         if(estado.equalsIgnoreCase("Subiendo")&& personaje.getX()+160>jl_Obst1.getX()&& personaje.getX()-100<jl_Obst1.getX())
          {
              System.out.println("Colisión!!!");
+            
          }
      }
       
@@ -78,16 +118,16 @@ public class FRM_Juego extends javax.swing.JFrame {
               jl_Obst2.setLocation(jl_Obst2.getX()-15, jl_Obst2.getY());
 
           else
-              jl_Obst2.setLocation(600,jl_Obst2.getY());
+              jl_Obst2.setLocation(700,jl_Obst2.getY());
       } 
      public void comprobarColision2()
      {
          if(personaje.getX()+50>jl_Obst2.getX()&&jl_Obst2.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst2.getY())
          {
              System.out.println("Colisión!!!");
-            //doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
-            //doh.play();
+             doh.play();
          }
+         
      }
       /////////////Obstaculo 3///////////////////
        public void moverObstaculo3()
@@ -96,15 +136,14 @@ public class FRM_Juego extends javax.swing.JFrame {
               jl_Obst3.setLocation(jl_Obst3.getX()-15, jl_Obst3.getY());
 
           else
-              jl_Obst3.setLocation(600,jl_Obst3.getY());
+              jl_Obst3.setLocation(800,jl_Obst3.getY());
       } 
      public void comprobarColision3()
      {
          if(personaje.getX()+50>jl_Obst3.getX()&&jl_Obst3.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst3.getY())
          {
              System.out.println("Colisión!!!");
-            //doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
-            //doh.play();
+             doh.play();
          }
      } /////////////Obstaculo 4///////////////////
        public void moverObstaculo4()
@@ -113,15 +152,14 @@ public class FRM_Juego extends javax.swing.JFrame {
               jl_Obst4.setLocation(jl_Obst4.getX()-15, jl_Obst4.getY());
 
           else
-              jl_Obst4.setLocation(600,jl_Obst4.getY());
+              jl_Obst4.setLocation(900,jl_Obst4.getY());
       } 
      public void comprobarColision4()
      {
          if(personaje.getX()+50>jl_Obst4.getX()&&jl_Obst4.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst4.getY())
          {
              System.out.println("Colisión!!!");
-            //doh= new AudioClip(getClass().getResource("../audio/Homer_-_D_OH_.wav"));
-            //doh.play();
+             doh.play();
          }
      }
     
@@ -140,11 +178,12 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst2 = new javax.swing.JLabel();
         jl_Obst3 = new javax.swing.JLabel();
         jl_Obst4 = new javax.swing.JLabel();
-        jl_Obst5 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jl_FondoSprinfield = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 500));
+        setTitle("¡AY! ¡¡LOS FRIJOLES!!");
+        setPreferredSize(new java.awt.Dimension(600, 548));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -154,11 +193,11 @@ public class FRM_Juego extends javax.swing.JFrame {
 
         personaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/homero.gif"))); // NOI18N
         getContentPane().add(personaje);
-        personaje.setBounds(0, 220, 140, 150);
+        personaje.setBounds(0, 230, 140, 150);
 
         jl_Obst1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/12.png"))); // NOI18N
         getContentPane().add(jl_Obst1);
-        jl_Obst1.setBounds(200, 210, 250, 90);
+        jl_Obst1.setBounds(200, 140, 250, 90);
 
         jl_Obst2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/11.png"))); // NOI18N
         getContentPane().add(jl_Obst2);
@@ -171,12 +210,10 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bus.png"))); // NOI18N
         getContentPane().add(jl_Obst4);
         jl_Obst4.setBounds(1430, 380, 250, 100);
+        getContentPane().add(jProgressBar1);
+        jProgressBar1.setBounds(240, 20, 200, 30);
 
-        jl_Obst5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/obst2.png"))); // NOI18N
-        getContentPane().add(jl_Obst5);
-        jl_Obst5.setBounds(1780, 300, 80, 60);
-
-        jl_FondoSprinfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sp2.jpg"))); // NOI18N
+        jl_FondoSprinfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sp3.png"))); // NOI18N
         getContentPane().add(jl_FondoSprinfield);
         jl_FondoSprinfield.setBounds(0, -50, 3000, 560);
 
@@ -186,11 +223,18 @@ public class FRM_Juego extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
        if(evt.getKeyCode()==38)
         {
-            estado = "Subiendo";
+            
+                 estado = "Subiendo";
+            
+            
+               
+            
         }
        if(evt.getKeyCode()==40)
         {
             estado = "Bajando";
+            
+          
         }
         
       //  System.out.println(""+evt.getKeyCode());        // TODO add your handling code here:
@@ -199,45 +243,45 @@ public class FRM_Juego extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FRM_Juego().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(FRM_Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new FRM_Juego().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel jl_FondoSprinfield;
     private javax.swing.JLabel jl_Obst1;
     private javax.swing.JLabel jl_Obst2;
     private javax.swing.JLabel jl_Obst3;
     private javax.swing.JLabel jl_Obst4;
-    private javax.swing.JLabel jl_Obst5;
     public javax.swing.JLabel personaje;
     // End of variables declaration//GEN-END:variables
 }

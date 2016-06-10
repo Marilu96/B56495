@@ -25,18 +25,20 @@ public class Hilo extends Thread {
         {
             try
             {
-                sleep(100);
+                sleep(200);
                 ventana.moverFondo();
                ventana.moverObstaculo1();
-               ventana.moverObstaculo2();
-               ventana.moverObstaculo3();
-               ventana.moverObstaculo4();
+//               ventana.moverObstaculo2();
+//               ventana.moverObstaculo3();
+//               ventana.moverObstaculo4();
                ventana.comprobarColision1();
-               ventana.comprobarColision2();
-               ventana.comprobarColision3();
-               ventana.comprobarColision4();
+//               ventana.comprobarColision2();
+//               ventana.comprobarColision3();
+//               ventana.comprobarColision4();
 //                ventana.cambiarIcono();
                 comprobarPersonaje();
+                ventana.limite();
+                
             }
             catch(Exception e)
             {
@@ -56,14 +58,9 @@ public class Hilo extends Thread {
         {
             ventana.bajandoPersonaje();
         }
-        if(ventana.personaje.getY()<160)
-        {
-            ventana.estado="Bajando";
-        }
-        if(ventana.personaje.getY()==270)
-        {
-            ventana.estado="En el suelo";
-        }
+       
+       
+       
     }
     
 }
