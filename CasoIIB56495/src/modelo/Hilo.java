@@ -25,7 +25,7 @@ public class Hilo extends Thread {
         {
             try
             {
-                sleep(200);
+                sleep(100);
                 ventana.moverFondo();
                ventana.moverObstaculo1();
 //               ventana.moverObstaculo2();
@@ -37,7 +37,9 @@ public class Hilo extends Thread {
 //               ventana.comprobarColision4();
 //                ventana.cambiarIcono();
                 comprobarPersonaje();
+                ventana.ganaste();
                 ventana.limite();
+                ventana.tiempo();
                 
             }
             catch(Exception e)

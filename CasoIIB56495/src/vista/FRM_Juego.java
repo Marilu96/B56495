@@ -19,12 +19,13 @@ public class FRM_Juego extends javax.swing.JFrame {
      */
     
     Hilo hilo;
+    FRM_Ganaste frm_Ganaste;
      public String estado = "";
      public String arriba = "arriba";
      public String abajo = "abajo";
      int contador =0;
      AudioClip doh;
-     
+     int segundos=0;
      
     public FRM_Juego() {
         initComponents();
@@ -35,11 +36,21 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst3.setLocation(2000, 120);
         jl_Obst4.setLocation(2800, 350);
         hilo = new Hilo(this);
+        frm_Ganaste = new FRM_Ganaste();
         doh= java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/Homer_-_D_OH_.wav"));
         jProgressBar1.setValue(100);
 
     }
     
+    public void tiempo()
+    {
+        segundos++;
+        if(segundos==10)
+        {
+            this.jl_Tiempo.setText((Integer.parseInt(jl_Tiempo.getText())+1)+"");
+            segundos=0;
+        }
+    }
         
     public void moverFondo()
     {
@@ -72,6 +83,16 @@ public class FRM_Juego extends javax.swing.JFrame {
 
          }
          
+     }
+     
+     public void ganaste()
+     {
+         if(segundos==10)
+         {
+             this.dispose();
+             frm_Ganaste.setVisible(true);
+             
+         }
      }
      
    
@@ -179,6 +200,9 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst3 = new javax.swing.JLabel();
         jl_Obst4 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
+        jl_Tiempo = new javax.swing.JLabel();
+        jl_NombreTiempo = new javax.swing.JLabel();
+        jl_Vida = new javax.swing.JLabel();
         jl_FondoSprinfield = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -193,7 +217,7 @@ public class FRM_Juego extends javax.swing.JFrame {
 
         personaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/homero.gif"))); // NOI18N
         getContentPane().add(personaje);
-        personaje.setBounds(0, 230, 140, 150);
+        personaje.setBounds(30, 150, 140, 150);
 
         jl_Obst1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/12.png"))); // NOI18N
         getContentPane().add(jl_Obst1);
@@ -211,7 +235,23 @@ public class FRM_Juego extends javax.swing.JFrame {
         getContentPane().add(jl_Obst4);
         jl_Obst4.setBounds(1430, 380, 250, 100);
         getContentPane().add(jProgressBar1);
-        jProgressBar1.setBounds(240, 20, 200, 30);
+        jProgressBar1.setBounds(280, 10, 170, 30);
+
+        jl_Tiempo.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        jl_Tiempo.setForeground(new java.awt.Color(153, 0, 153));
+        jl_Tiempo.setText("0");
+        getContentPane().add(jl_Tiempo);
+        jl_Tiempo.setBounds(150, 15, 60, 20);
+
+        jl_NombreTiempo.setFont(new java.awt.Font("FangSong", 3, 36)); // NOI18N
+        jl_NombreTiempo.setForeground(new java.awt.Color(153, 0, 153));
+        jl_NombreTiempo.setText("Puntos:");
+        getContentPane().add(jl_NombreTiempo);
+        jl_NombreTiempo.setBounds(0, 0, 170, 40);
+
+        jl_Vida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/heart7plz.gif"))); // NOI18N
+        getContentPane().add(jl_Vida);
+        jl_Vida.setBounds(230, 10, 50, 40);
 
         jl_FondoSprinfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sp3.png"))); // NOI18N
         getContentPane().add(jl_FondoSprinfield);
@@ -278,10 +318,13 @@ public class FRM_Juego extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel jl_FondoSprinfield;
+    private javax.swing.JLabel jl_NombreTiempo;
     private javax.swing.JLabel jl_Obst1;
     private javax.swing.JLabel jl_Obst2;
     private javax.swing.JLabel jl_Obst3;
     private javax.swing.JLabel jl_Obst4;
+    private javax.swing.JLabel jl_Tiempo;
+    private javax.swing.JLabel jl_Vida;
     public javax.swing.JLabel personaje;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ package vista;
 
 import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 import modelo.Hilo;
 
 /**
@@ -22,6 +23,7 @@ public class FRM_Inicio extends javax.swing.JFrame {
     FRM_Instrucciones frm_Instrucciones;    
     AudioClip audioInicio;
     Hilo hilo;
+    public String estadoSonido  = "sonando";
     public FRM_Inicio() {
         initComponents();
         this.setSize(495,338);
@@ -91,6 +93,9 @@ public class FRM_Inicio extends javax.swing.JFrame {
         btnJugar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnInstruccionesJuego = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        btnSonido = new javax.swing.JButton();
         jl_Springfield = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +131,23 @@ public class FRM_Inicio extends javax.swing.JFrame {
         getContentPane().add(btnInstruccionesJuego);
         btnInstruccionesJuego.setBounds(90, 260, 80, 40);
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setText("Digite su nombre");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(150, 140, 150, 20);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(150, 160, 150, 30);
+
+        btnSonido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/play.png"))); // NOI18N
+        btnSonido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonidoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSonido);
+        btnSonido.setBounds(410, 10, 60, 40);
+
         jl_Springfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/springfield.jpg"))); // NOI18N
         getContentPane().add(jl_Springfield);
         jl_Springfield.setBounds(0, 0, 500, 300);
@@ -150,6 +172,23 @@ public class FRM_Inicio extends javax.swing.JFrame {
         System.exit(0);
 
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonidoActionPerformed
+        if(estadoSonido.equalsIgnoreCase("sonando"))
+        {
+            audioInicio.stop();
+            btnSonido.setIcon(new ImageIcon("src/imagenes/pause.png"));
+            estadoSonido="silencio";
+        }
+        else
+        {
+            audioInicio.play();
+            btnSonido.setIcon(new ImageIcon("src/imagenes/play.png"));
+            estadoSonido="sonando";
+
+            
+        }
+    }//GEN-LAST:event_btnSonidoActionPerformed
 
      
     
@@ -193,6 +232,9 @@ public class FRM_Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnInstruccionesJuego;
     private javax.swing.JButton btnJugar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSonido;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jl_Springfield;
     // End of variables declaration//GEN-END:variables
 

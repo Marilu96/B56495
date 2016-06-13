@@ -50,7 +50,7 @@ public class FRM_Perdiste extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jl_Exit);
-        jl_Exit.setBounds(290, 320, 73, 30);
+        jl_Exit.setBounds(290, 320, 73, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/perdiste.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
