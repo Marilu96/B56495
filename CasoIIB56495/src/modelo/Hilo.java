@@ -27,19 +27,18 @@ public class Hilo extends Thread {
             {
                 sleep(100);
                 ventana.moverFondo();
-               ventana.moverObstaculo1();
-//               ventana.moverObstaculo2();
-//               ventana.moverObstaculo3();
-//               ventana.moverObstaculo4();
-               ventana.comprobarColision1();
-//               ventana.comprobarColision2();
-//               ventana.comprobarColision3();
-//               ventana.comprobarColision4();
+                ventana.moverObstaculo1();
+                ventana.moverObstaculo2();
+
+                ventana.comprobarColision1();
+                ventana.comprobarColision2();
+
 //                ventana.cambiarIcono();
                 comprobarPersonaje();
-                ventana.ganaste();
+                //ventana.disminuirVida();
+                //ventana.ganaste();
                 ventana.limite();
-                ventana.tiempo();
+                ventana.metodoMetros();
                 
             }
             catch(Exception e)

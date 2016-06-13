@@ -21,6 +21,7 @@ public class FRM_Inicio extends javax.swing.JFrame {
     /** Creates new form FRM_Inicio */
     FRM_Juego frm_Juego;
     FRM_Instrucciones frm_Instrucciones;    
+    FRM_MejoresJugadores frm_MejoresJug;
     AudioClip audioInicio;
     Hilo hilo;
     public String estadoSonido  = "sonando";
@@ -33,6 +34,7 @@ public class FRM_Inicio extends javax.swing.JFrame {
         audioInicio.loop();
 
         frm_Juego = new FRM_Juego();
+        frm_MejoresJug = new FRM_MejoresJugadores();
         frm_Instrucciones = new FRM_Instrucciones();
         detenerMusica();
     }
@@ -78,6 +80,7 @@ public class FRM_Inicio extends javax.swing.JFrame {
         }
     }
     
+      
     
     
   
@@ -93,9 +96,8 @@ public class FRM_Inicio extends javax.swing.JFrame {
         btnJugar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnInstruccionesJuego = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         btnSonido = new javax.swing.JButton();
+        btnMejoresJugadores = new javax.swing.JButton();
         jl_Springfield = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,14 +133,6 @@ public class FRM_Inicio extends javax.swing.JFrame {
         getContentPane().add(btnInstruccionesJuego);
         btnInstruccionesJuego.setBounds(90, 260, 80, 40);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel1.setText("Digite su nombre");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 140, 150, 20);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(150, 160, 150, 30);
-
         btnSonido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/play.png"))); // NOI18N
         btnSonido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +141,15 @@ public class FRM_Inicio extends javax.swing.JFrame {
         });
         getContentPane().add(btnSonido);
         btnSonido.setBounds(410, 10, 60, 40);
+
+        btnMejoresJugadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar_information.png"))); // NOI18N
+        btnMejoresJugadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMejoresJugadoresActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMejoresJugadores);
+        btnMejoresJugadores.setBounds(10, 10, 70, 40);
 
         jl_Springfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/springfield.jpg"))); // NOI18N
         getContentPane().add(jl_Springfield);
@@ -190,6 +193,10 @@ public class FRM_Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSonidoActionPerformed
 
+    private void btnMejoresJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMejoresJugadoresActionPerformed
+        frm_MejoresJug.setVisible(true);
+    }//GEN-LAST:event_btnMejoresJugadoresActionPerformed
+
      
     
     
@@ -231,10 +238,9 @@ public class FRM_Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInstruccionesJuego;
     private javax.swing.JButton btnJugar;
+    private javax.swing.JButton btnMejoresJugadores;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSonido;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jl_Springfield;
     // End of variables declaration//GEN-END:variables
 

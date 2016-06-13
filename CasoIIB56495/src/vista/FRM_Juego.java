@@ -6,6 +6,7 @@
 package vista;
 
 import java.applet.AudioClip;
+import javax.swing.ImageIcon;
 import modelo.Hilo;
 
 /**
@@ -20,12 +21,17 @@ public class FRM_Juego extends javax.swing.JFrame {
     
     Hilo hilo;
     FRM_Ganaste frm_Ganaste;
+    FRM_Perdiste frm_Perdiste;
      public String estado = "";
      public String arriba = "arriba";
      public String abajo = "abajo";
+     String colision ="";
      int contador =0;
+     int contador2 =0;
      AudioClip doh;
-     int segundos=0;
+     int metros=0;
+     int disminuirVida=0;
+     
      
     public FRM_Juego() {
         initComponents();
@@ -37,18 +43,20 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst4.setLocation(2800, 350);
         hilo = new Hilo(this);
         frm_Ganaste = new FRM_Ganaste();
+       // frm_Perdiste = new FRM_Perdiste();
         doh= java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/Homer_-_D_OH_.wav"));
         jProgressBar1.setValue(100);
+        
 
     }
     
-    public void tiempo()
+    public void metodoMetros()
     {
-        segundos++;
-        if(segundos==10)
+        metros++;
+        if(metros==10)
         {
-            this.jl_Tiempo.setText((Integer.parseInt(jl_Tiempo.getText())+1)+"");
-            segundos=0;
+            this.jl_NumeroMetros.setText((Integer.parseInt(jl_NumeroMetros.getText())+1)+"");
+            metros=0;
         }
     }
         
@@ -87,13 +95,26 @@ public class FRM_Juego extends javax.swing.JFrame {
      
      public void ganaste()
      {
-         if(segundos==10)
+         if(metros==10)
          {
              this.dispose();
              frm_Ganaste.setVisible(true);
              
          }
      }
+     
+//     public void disminuirVida()
+//     {
+//         if(colision.equals("Colision"))
+//         {
+//             jProgressBar1.setValue(100-disminuirVida);
+//             jl_porcentajevida.setText("Vida restante"+"%");
+//         }
+//         frm_Perdiste.setVisible(true);
+//         this.dispose();
+//         hilo.stop();
+//        
+//     }
      
    
      ////////////Obstaculo 1/////////////////////
@@ -111,7 +132,7 @@ public class FRM_Juego extends javax.swing.JFrame {
               jl_Obst1.setLocation(jl_Obst1.getX()-15+contador, jl_Obst1.getY());
               
           }
-          System.out.println("estado "+estado);  
+           
       } 
       
       
@@ -128,6 +149,7 @@ public class FRM_Juego extends javax.swing.JFrame {
          if(estado.equalsIgnoreCase("Subiendo")&& personaje.getX()+160>jl_Obst1.getX()&& personaje.getX()-100<jl_Obst1.getX())
          {
              System.out.println("Colisión!!!");
+             doh.play();
             
          }
      }
@@ -136,7 +158,11 @@ public class FRM_Juego extends javax.swing.JFrame {
        public void moverObstaculo2()
       {
           if(jl_Obst2.getX()>-50)
+          {
               jl_Obst2.setLocation(jl_Obst2.getX()-15, jl_Obst2.getY());
+              contador2+=-2;
+              
+          }
 
           else
               jl_Obst2.setLocation(700,jl_Obst2.getY());
@@ -200,8 +226,9 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst3 = new javax.swing.JLabel();
         jl_Obst4 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
-        jl_Tiempo = new javax.swing.JLabel();
-        jl_NombreTiempo = new javax.swing.JLabel();
+        jl_NumeroMetros = new javax.swing.JLabel();
+        jl_Metros = new javax.swing.JLabel();
+        jl_porcentajevida = new javax.swing.JLabel();
         jl_Vida = new javax.swing.JLabel();
         jl_FondoSprinfield = new javax.swing.JLabel();
 
@@ -237,17 +264,19 @@ public class FRM_Juego extends javax.swing.JFrame {
         getContentPane().add(jProgressBar1);
         jProgressBar1.setBounds(280, 10, 170, 30);
 
-        jl_Tiempo.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jl_Tiempo.setForeground(new java.awt.Color(153, 0, 153));
-        jl_Tiempo.setText("0");
-        getContentPane().add(jl_Tiempo);
-        jl_Tiempo.setBounds(150, 15, 60, 20);
+        jl_NumeroMetros.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        jl_NumeroMetros.setForeground(new java.awt.Color(153, 0, 153));
+        jl_NumeroMetros.setText("0");
+        getContentPane().add(jl_NumeroMetros);
+        jl_NumeroMetros.setBounds(150, 15, 60, 20);
 
-        jl_NombreTiempo.setFont(new java.awt.Font("FangSong", 3, 36)); // NOI18N
-        jl_NombreTiempo.setForeground(new java.awt.Color(153, 0, 153));
-        jl_NombreTiempo.setText("Puntos:");
-        getContentPane().add(jl_NombreTiempo);
-        jl_NombreTiempo.setBounds(0, 0, 170, 40);
+        jl_Metros.setFont(new java.awt.Font("FangSong", 3, 36)); // NOI18N
+        jl_Metros.setForeground(new java.awt.Color(153, 0, 153));
+        jl_Metros.setText("Metros:");
+        getContentPane().add(jl_Metros);
+        jl_Metros.setBounds(0, 0, 170, 40);
+        getContentPane().add(jl_porcentajevida);
+        jl_porcentajevida.setBounds(334, 15, 70, 20);
 
         jl_Vida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/heart7plz.gif"))); // NOI18N
         getContentPane().add(jl_Vida);
@@ -261,23 +290,18 @@ public class FRM_Juego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-       if(evt.getKeyCode()==38)
-        {
-            
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==38)
+        {   
                  estado = "Subiendo";
-            
-            
-               
-            
+                 System.out.println(estado);
         }
        if(evt.getKeyCode()==40)
         {
             estado = "Bajando";
-            
-          
+                             System.out.println(estado);
         }
-        
-      //  System.out.println(""+evt.getKeyCode());        // TODO add your handling code here:
+        System.out.println(evt.getKeyCode());
     }//GEN-LAST:event_formKeyPressed
 
     /**
@@ -318,13 +342,14 @@ public class FRM_Juego extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel jl_FondoSprinfield;
-    private javax.swing.JLabel jl_NombreTiempo;
+    private javax.swing.JLabel jl_Metros;
+    private javax.swing.JLabel jl_NumeroMetros;
     private javax.swing.JLabel jl_Obst1;
     private javax.swing.JLabel jl_Obst2;
     private javax.swing.JLabel jl_Obst3;
     private javax.swing.JLabel jl_Obst4;
-    private javax.swing.JLabel jl_Tiempo;
     private javax.swing.JLabel jl_Vida;
+    private javax.swing.JLabel jl_porcentajevida;
     public javax.swing.JLabel personaje;
     // End of variables declaration//GEN-END:variables
 }
