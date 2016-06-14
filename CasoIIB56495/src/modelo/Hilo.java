@@ -33,10 +33,8 @@ public class Hilo extends Thread {
                 ventana.comprobarColision1();
                 ventana.comprobarColision2();
 
-//                ventana.cambiarIcono();
                 comprobarPersonaje();
-                //ventana.disminuirVida();
-                //ventana.ganaste();
+                ventana.disminuirVida();
                 ventana.limite();
                 ventana.metodoMetros();
                 

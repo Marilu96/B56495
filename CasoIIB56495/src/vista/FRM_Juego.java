@@ -20,8 +20,8 @@ public class FRM_Juego extends javax.swing.JFrame {
      */
     
     Hilo hilo;
-    FRM_Ganaste frm_Ganaste;
     FRM_Perdiste frm_Perdiste;
+    FRM_AgregarPuntaje frm_AgregarPuntaje = new FRM_AgregarPuntaje();
      public String estado = "";
      public String arriba = "arriba";
      public String abajo = "abajo";
@@ -31,21 +31,21 @@ public class FRM_Juego extends javax.swing.JFrame {
      AudioClip doh;
      int metros=0;
      int disminuirVida=0;
+     int recorrido=0;
      
      
     public FRM_Juego() {
         initComponents();
-        setLocation(450,100);
+        setLocation(600,100);
         personaje.setLocation(100, 200);
         jl_Obst1.setLocation(500,200);
-        jl_Obst2.setLocation(900,370);
-        jl_Obst3.setLocation(2000, 120);
-        jl_Obst4.setLocation(2800, 350);
+        jl_Obst2.setLocation(1000,370);
+       
         hilo = new Hilo(this);
-        frm_Ganaste = new FRM_Ganaste();
-       // frm_Perdiste = new FRM_Perdiste();
+        frm_Perdiste = new FRM_Perdiste();
         doh= java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/Homer_-_D_OH_.wav"));
         jProgressBar1.setValue(100);
+        jl_porcentajevida.setText("100%");
         
 
     }
@@ -55,7 +55,9 @@ public class FRM_Juego extends javax.swing.JFrame {
         metros++;
         if(metros==10)
         {
+            
             this.jl_NumeroMetros.setText((Integer.parseInt(jl_NumeroMetros.getText())+1)+"");
+            recorrido+=1;
             metros=0;
         }
     }
@@ -93,28 +95,28 @@ public class FRM_Juego extends javax.swing.JFrame {
          
      }
      
-     public void ganaste()
-     {
-         if(metros==10)
-         {
-             this.dispose();
-             frm_Ganaste.setVisible(true);
-             
-         }
-     }
+    
      
-//     public void disminuirVida()
-//     {
-//         if(colision.equals("Colision"))
-//         {
-//             jProgressBar1.setValue(100-disminuirVida);
-//             jl_porcentajevida.setText("Vida restante"+"%");
-//         }
-//         frm_Perdiste.setVisible(true);
-//         this.dispose();
-//         hilo.stop();
-//        
-//     }
+     public void disminuirVida()
+     {
+         if(colision.equals("Colision"))
+         {
+             jProgressBar1.setValue(100-disminuirVida);
+             jl_porcentajevida.setText(100-disminuirVida+"%");
+         }
+         if(jProgressBar1.getValue()<=0)
+         {
+            frm_AgregarPuntaje.setVisible(true);
+            frm_AgregarPuntaje.setPuntaje(recorrido);
+            frm_Perdiste.setVisible(true);
+            frm_Perdiste.reproducirSonido();
+             this.dispose();
+             hilo.stop();
+         }
+         
+         
+        
+     }
      
    
      ////////////Obstaculo 1/////////////////////
@@ -122,9 +124,9 @@ public class FRM_Juego extends javax.swing.JFrame {
       public void moverObstaculo1()
       {
           
-          if(jl_Obst1.getX()+200<0)
+          if(jl_Obst1.getX()+350<0)
           {
-              jl_Obst1.setLocation(650, jl_Obst1.getY());
+              jl_Obst1.setLocation(700, jl_Obst1.getY());
               contador+=-2;
           }
           else
@@ -139,17 +141,12 @@ public class FRM_Juego extends javax.swing.JFrame {
     
        public void comprobarColision1()
      {
-//         if(personaje.getX()+50>jl_Obst1.getX()&&jl_Obst1.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst1.getY())
-//         {
-//             System.out.println("Colisión!!!");
-//             doh.play();
-//
-//         }
-         
          if(estado.equalsIgnoreCase("Subiendo")&& personaje.getX()+160>jl_Obst1.getX()&& personaje.getX()-100<jl_Obst1.getX())
          {
              System.out.println("Colisión!!!");
+             colision="Colision";
              doh.play();
+             disminuirVida+=1;
             
          }
      }
@@ -157,15 +154,15 @@ public class FRM_Juego extends javax.swing.JFrame {
       /////////////Obstaculo 2///////////////////
        public void moverObstaculo2()
       {
-          if(jl_Obst2.getX()>-50)
+          if(jl_Obst2.getX()+350<0)
           {
-              jl_Obst2.setLocation(jl_Obst2.getX()-15, jl_Obst2.getY());
+              jl_Obst2.setLocation(600, jl_Obst2.getY());
               contador2+=-2;
               
           }
 
           else
-              jl_Obst2.setLocation(700,jl_Obst2.getY());
+              jl_Obst2.setLocation(jl_Obst2.getX()-15+contador2,jl_Obst2.getY());
       } 
      public void comprobarColision2()
      {
@@ -173,42 +170,11 @@ public class FRM_Juego extends javax.swing.JFrame {
          {
              System.out.println("Colisión!!!");
              doh.play();
+             disminuirVida+=1;
          }
          
      }
-      /////////////Obstaculo 3///////////////////
-       public void moverObstaculo3()
-      {
-          if(jl_Obst3.getX()>-50)
-              jl_Obst3.setLocation(jl_Obst3.getX()-15, jl_Obst3.getY());
-
-          else
-              jl_Obst3.setLocation(800,jl_Obst3.getY());
-      } 
-     public void comprobarColision3()
-     {
-         if(personaje.getX()+50>jl_Obst3.getX()&&jl_Obst3.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst3.getY())
-         {
-             System.out.println("Colisión!!!");
-             doh.play();
-         }
-     } /////////////Obstaculo 4///////////////////
-       public void moverObstaculo4()
-      {
-          if(jl_Obst4.getX()>-50)
-              jl_Obst4.setLocation(jl_Obst4.getX()-15, jl_Obst4.getY());
-
-          else
-              jl_Obst4.setLocation(900,jl_Obst4.getY());
-      } 
-     public void comprobarColision4()
-     {
-         if(personaje.getX()+50>jl_Obst4.getX()&&jl_Obst4.getX()+50>personaje.getX()&&personaje.getY()+50>jl_Obst4.getY())
-         {
-             System.out.println("Colisión!!!");
-             doh.play();
-         }
-     }
+     
     
      
     /**
@@ -223,18 +189,16 @@ public class FRM_Juego extends javax.swing.JFrame {
         personaje = new javax.swing.JLabel();
         jl_Obst1 = new javax.swing.JLabel();
         jl_Obst2 = new javax.swing.JLabel();
-        jl_Obst3 = new javax.swing.JLabel();
-        jl_Obst4 = new javax.swing.JLabel();
+        jl_porcentajevida = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jl_NumeroMetros = new javax.swing.JLabel();
         jl_Metros = new javax.swing.JLabel();
-        jl_porcentajevida = new javax.swing.JLabel();
         jl_Vida = new javax.swing.JLabel();
         jl_FondoSprinfield = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("¡AY! ¡¡LOS FRIJOLES!!");
-        setPreferredSize(new java.awt.Dimension(600, 548));
+        setPreferredSize(new java.awt.Dimension(700, 548));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -253,14 +217,8 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Obst2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/11.png"))); // NOI18N
         getContentPane().add(jl_Obst2);
         jl_Obst2.setBounds(710, 390, 250, 80);
-
-        jl_Obst3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/111.png"))); // NOI18N
-        getContentPane().add(jl_Obst3);
-        jl_Obst3.setBounds(1070, 240, 250, 100);
-
-        jl_Obst4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bus.png"))); // NOI18N
-        getContentPane().add(jl_Obst4);
-        jl_Obst4.setBounds(1430, 380, 250, 100);
+        getContentPane().add(jl_porcentajevida);
+        jl_porcentajevida.setBounds(334, 15, 70, 20);
         getContentPane().add(jProgressBar1);
         jProgressBar1.setBounds(280, 10, 170, 30);
 
@@ -275,8 +233,6 @@ public class FRM_Juego extends javax.swing.JFrame {
         jl_Metros.setText("Metros:");
         getContentPane().add(jl_Metros);
         jl_Metros.setBounds(0, 0, 170, 40);
-        getContentPane().add(jl_porcentajevida);
-        jl_porcentajevida.setBounds(334, 15, 70, 20);
 
         jl_Vida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/heart7plz.gif"))); // NOI18N
         getContentPane().add(jl_Vida);
@@ -346,8 +302,6 @@ public class FRM_Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jl_NumeroMetros;
     private javax.swing.JLabel jl_Obst1;
     private javax.swing.JLabel jl_Obst2;
-    private javax.swing.JLabel jl_Obst3;
-    private javax.swing.JLabel jl_Obst4;
     private javax.swing.JLabel jl_Vida;
     private javax.swing.JLabel jl_porcentajevida;
     public javax.swing.JLabel personaje;

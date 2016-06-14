@@ -41,7 +41,7 @@ public class FRM_Instrucciones extends javax.swing.JFrame {
         jta_Instrucciones.setColumns(20);
         jta_Instrucciones.setForeground(new java.awt.Color(0, 153, 0));
         jta_Instrucciones.setRows(5);
-        jta_Instrucciones.setText("\tInstrucciones del Juego\n\nAyuda a Homero a llegar pronto a su casa!!\nSe fue a caminar y dejó los frijoles en la cocina!!\nPero ten cuidado, porque hay vehículos en el \ncamino, esquivalos con las flechas de arriba y abajo.\n\n\tBuena Suerte!");
+        jta_Instrucciones.setText("\tInstrucciones del Juego\n\nAyuda a Homero a correr por Sprinfield!!\nSe fue a caminar y dejó los frijoles en la cocina!!\nPero ten cuidado, porque hay vehículos en el \ncamino, esquivalos con las flechas de arriba y abajo.\n\n\tBuena Suerte!");
         jta_Instrucciones.setCaretColor(new java.awt.Color(102, 255, 153));
         jScrollPane1.setViewportView(jta_Instrucciones);
 

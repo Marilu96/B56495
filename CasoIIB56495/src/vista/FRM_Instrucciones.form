@@ -50,7 +50,7 @@
               <Color blue="0" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="&#x9;Instrucciones del Juego&#xa;&#xa;Ayuda a Homero a llegar pronto a su casa!!&#xa;Se fue a caminar y dej&#xf3; los frijoles en la cocina!!&#xa;Pero ten cuidado, porque hay veh&#xed;culos en el &#xa;camino, esquivalos con las flechas de arriba y abajo.&#xa;&#xa;&#x9;Buena Suerte!"/>
+            <Property name="text" type="java.lang.String" value="&#x9;Instrucciones del Juego&#xa;&#xa;Ayuda a Homero a correr por Sprinfield!!&#xa;Se fue a caminar y dej&#xf3; los frijoles en la cocina!!&#xa;Pero ten cuidado, porque hay veh&#xed;culos en el &#xa;camino, esquivalos con las flechas de arriba y abajo.&#xa;&#xa;&#x9;Buena Suerte!"/>
             <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="ff" red="66" type="rgb"/>
             </Property>

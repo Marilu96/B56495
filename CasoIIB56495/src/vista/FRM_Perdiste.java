@@ -17,10 +17,16 @@ public class FRM_Perdiste extends javax.swing.JFrame {
     AudioClip audioPerdiste;
     public FRM_Perdiste() {
         initComponents();
-        this.setSize(600, 600);
+        this.setSize(480, 400);
         setLocation(400, 100);
         audioPerdiste = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/risa_Nelson_los_simpson_latino_.wav"));
+       
+    }
+    
+    public void reproducirSonido()
+    {
         audioPerdiste.play();
+   
     }
 
    
@@ -62,7 +68,7 @@ public class FRM_Perdiste extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jl_HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jl_HomeActionPerformed
-        System.exit(0);
+        this.dispose();
         frm_Inicio.setVisible(true);
 
     }//GEN-LAST:event_jl_HomeActionPerformed

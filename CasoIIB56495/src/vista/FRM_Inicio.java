@@ -39,6 +39,11 @@ public class FRM_Inicio extends javax.swing.JFrame {
         detenerMusica();
     }
     
+    public void listar()
+    {
+        frm_MejoresJug.mostrarMejoresJug(frm_Juego.frm_AgregarPuntaje.metodos.getInformacionArchivosPlanos());
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -163,10 +168,12 @@ public class FRM_Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInstruccionesJuegoActionPerformed
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-       frm_Juego.setVisible(true);
+       frm_Juego = new FRM_Juego();
+        frm_Juego.setVisible(true);
        frm_Juego.hilo.start();
        detenerMusica();
        audioInicio.loop();
+       
        
 
     }//GEN-LAST:event_btnJugarActionPerformed
@@ -194,6 +201,7 @@ public class FRM_Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSonidoActionPerformed
 
     private void btnMejoresJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMejoresJugadoresActionPerformed
+        listar();
         frm_MejoresJug.setVisible(true);
     }//GEN-LAST:event_btnMejoresJugadoresActionPerformed
 
