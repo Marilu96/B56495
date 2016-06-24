@@ -33,12 +33,14 @@ public class Controlador_FRM_VentanaPrincipal implements ActionListener {
             {
                 metodos.insertarPersona(ventana.agregarPersona());
                 ventana.mostrar(metodos.mostrarInformacion());
+                ventana.deshabilitarCedula();
                 
             }
             else
             {
                 metodos.insertarPersona7600(ventana.agregarPersona());
                 ventana.mostrar(metodos.mostrarInformacion());
+                ventana.deshabilitarCedula();
             }      
 
 
@@ -47,15 +49,35 @@ public class Controlador_FRM_VentanaPrincipal implements ActionListener {
         if(e.getActionCommand().equalsIgnoreCase("Modificar"))
         {
             
+            metodos.modificarInformacion(ventana.agregarPersona());
+            ventana.mostrar(metodos.mostrarInformacion());
         
         }
-        if(e.getActionCommand().equalsIgnoreCase(""))
+        if(e.getActionCommand().equalsIgnoreCase("Eliminar cita"))
+        {
+            metodos.eliminar(ventana.devolverCedula(), ventana.agregarPersona());
+            ventana.mostrar(metodos.mostrarInformacion());
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Atender siguiente"))
         {
         
         }
-        if(e.getActionCommand().equalsIgnoreCase(""))
+        if(e.getActionCommand().equalsIgnoreCase("Reportes"))
         {
-        
+            ventana.mostrar(metodos.reportes(ventana.agregarPersona()));
+            
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Menor"))
+        {
+            metodos.ordenarDeMenorAMayor();
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Mayor"))
+        {
+            metodos.ordenarDeMayorAMenor();
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Limpiar"))
+        {
+            ventana.limpiarCampos();
         }
     }
     

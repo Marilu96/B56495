@@ -29,6 +29,9 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         this.btnEliminarCita.addActionListener(controlador);
         this.btnAtenderSiguiente.addActionListener(controlador);
         this.btnReportes.addActionListener(controlador);
+        this.btnLimpiar.addActionListener(controlador);
+        this.btnMayor.addActionListener(controlador);
+        this.btnMenor.addActionListener(controlador);
     }
     
     public void llenarjcbPrioridad()
@@ -64,6 +67,14 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     {
         this.txtCedula.setEnabled(false);
     }
+    public void limpiarCampos()
+    {
+        this.txtCedula.setText("");
+        this.txtCedula.setEnabled(true);
+        this.txtNombre.setText("");
+        this.txtEdad.setText("");
+        this.txtFechaCita.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,6 +102,9 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jcbPrioridad = new javax.swing.JComboBox();
         btnReportes = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnMenor = new javax.swing.JButton();
+        btnMayor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +135,14 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jcbPrioridad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnReportes.setText("Reportes");
+
+        btnLimpiar.setText("Limpiar");
+
+        btnMenor.setText("<");
+        btnMenor.setActionCommand("Menor");
+
+        btnMayor.setText(">");
+        btnMayor.setActionCommand("Mayor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,11 +184,16 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminarCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAtenderSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMenor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMayor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +227,9 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(txtFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(btnLimpiar)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEliminarCita)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -208,8 +237,13 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnReportes)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnMenor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMayor)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -254,6 +288,9 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAtenderSiguiente;
     private javax.swing.JButton btnEliminarCita;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnMayor;
+    private javax.swing.JButton btnMenor;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnReportes;
     private javax.swing.JLabel jLabel1;
