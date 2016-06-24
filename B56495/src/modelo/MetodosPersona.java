@@ -84,9 +84,11 @@ public class MetodosPersona {
     }
       public String reportes(String arreglo[])
       {
-          String informacion="Reportes!!";
+          String informacion="Reportes!!\n";
           informacion+= "Cantidad de personas: "+getCantidadPersonas();
           informacion+= "\nPromedio: "+promedioEdad();
+          informacion+= "\nInformacion Lista: "+imprimirLista();
+          
           return informacion;
       }
       
@@ -208,17 +210,16 @@ public class MetodosPersona {
             
         }
     }
-       public void imprimirLista()
+       public String imprimirLista()
     {
         String informacion ="";
         Persona auxiliar = primero;
         while(auxiliar!=null)
         {
-           informacion+=auxiliar.getInformacion();
+           informacion+=auxiliar.getInformacion()+"\n";
+           auxiliar=auxiliar.getSiguiente();
         }
-        
-        
-        ;
+          return informacion;             
     }
       public void ordenarDeMenorAMayor()
     {
