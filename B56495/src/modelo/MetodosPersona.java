@@ -13,7 +13,7 @@ public class MetodosPersona {
     
     Persona primero=null;
     int contador=0;
-    int promedio=0;
+    int promedioEd=0;
     
     public MetodosPersona()
     {
@@ -92,6 +92,7 @@ public class MetodosPersona {
       
       public int promedioEdad()
       {
+          int promedio=0;
           int suma =0;
           Persona aux = primero;
            while(aux!=null)
@@ -99,7 +100,7 @@ public class MetodosPersona {
              suma+=Integer.parseInt(aux.getEdad());
              aux=aux.getSiguiente();
           }
-           return promedio = suma/contador;
+           return promedio = suma/getCantidadPersonas();
       }
       public String[] buscarPersona(String cedula)
       {
